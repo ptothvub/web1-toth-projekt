@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Upravljanje vozilima</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+	<!--CSS-->
+	<link rel="stylesheet" href="css/content-wrapper.css">
+	<link rel="stylesheet" href="css/sidebar.css">
+	<link rel="stylesheet" href="css/navbar.css">
+	<style>
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding-top: 80px;
+        }
+    </style>
+</head>
+
+<body>
+	<!--Navigation-->
+	<div id="navbar-container"></div>
+
+	<div class="container-fluid">
+		<div class="row">
+
+			<div id="sidebar-container"></div>
+			<!-- main content -->
+			<div class="col-lg-10 ms-lg-auto px-md-4">
+				<!-- card row -->
+				<div class="row mb-4 ">
+					<div class="col-md-3 ">
+						<div class="card text-center mb-3 text-bg-primary">
+							<div class="card-body">
+								<h5 class="card-title">Broj vozila</h5>
+								<h3 class="card-text">46</h3>
+								<p class="card-text">2 nova u dolasku</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="card text-center mb-3 text-bg-warning">
+							<div class="card-body">
+								<h5 class="card-title">Broj vozača</h5>
+								<h3 class="card-text">28</h3>
+								<p class="card-text">5 trenutno dostupnih</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="card text-center mb-3 text-bg-success">
+							<div class="card-body">
+								<h5 class="card-title">Broj godišnjih odmora</h5>
+								<h3 class="card-text">4</h3>
+								<p class="card-text">&nbsp;</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="card text-center mb-3 text-bg-danger">
+							<div class="card-body">
+								<h5 class="card-title">Broj vozila na servisu</h5>
+								<h3 class="card-text">2</h3>
+								<p class="card-text">&nbsp;</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- end of card row -->
+
+				<div class="card mb-4">
+					<h5 class="card-header">
+						<i class="bi bi-bell"></i>
+						Događaji
+					</h5>
+					<div class="card-body">
+						<div class="list-group">
+							<a href="#" class="list-group-item list-group-item-action">
+								<div class="d-flex w-100 justify-content-between">
+									<h6 class="mb-1">Vozilo iznajmljeno - Marko Marulić</h6>
+									<small>prije 5 min</small>
+								</div>
+								<small>10.7.2026. - 15.7.2026.</small>
+							</a>
+							<a href="#" class="list-group-item list-group-item-action">
+								<div class="d-flex w-100 justify-content-between">
+									<h6 class="mb-1">Servis (Daewoo Matiz - BJ 777-SJ) </h6>
+									<small>prije 16 sati</small>
+								</div>
+								<small>9.7.2026. - 11.7.2026.</small>
+							</a>
+							<a href="#" class="list-group-item list-group-item-action">
+								<div class="d-flex w-100 justify-content-between">
+									<h6 class="mb-1">Povratak vozila - Siniša Lovrić</h6>
+									<small>10.7.2026.</small>
+								</div>
+								<small>2.7.2026. - 10.7.2026.</small>
+							</a>
+							<a href="#" class="list-group-item list-group-item-action">
+								<div class="d-flex w-100 justify-content-between">
+									<h6 class="mb-1">Povratak vozila - Ivan Horvat</h6>
+									<small>7.7.2026.</small>
+								</div>
+								<small>28.6.2026. - 7.7.2026.</small>
+							</a>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/components.js"></script>
+	<script src="js/alert.js"></script>
+</body>
+
+</html>
