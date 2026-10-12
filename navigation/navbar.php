@@ -16,7 +16,7 @@
     <div class="d-flex align-items-center ms-auto">
         <span class="me-3 d-none d-sm-inline">
           <i class="bi bi-person-circle me-1"></i>
-          Admin
+          <?= htmlspecialchars($_SESSION['user']['ime_prezime']) ?>
         </span>
         <button class="btn btn-danger btn-sm" id="logout-btn">
           <i class="bi bi-box-arrow-right"></i>

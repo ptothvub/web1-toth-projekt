@@ -1,5 +1,6 @@
 <?php
-require_once 'config/db.php';
+//spoji se na bazu, $pdo mi je objekt instance veze s db, ne treba cleanup...
+require_once 'config/pdo.php';
 
 // Ako korisnik nije prijavljen, preusmjeri ga na login
 if (!isset($_SESSION['user'])) {
@@ -10,14 +11,13 @@ if (!isset($_SESSION['user'])) {
 $pageTitle = "Upravljanje vozilima - Početna";
 
 try {
-    // 1. Brojači za kartice
-    $countVozila = $pdo->query("SELECT COUNT(*) FROM vozila")->fetchColumn();
-    $countVozaci = $pdo->query("SELECT COUNT(*) FROM zaposlenici")->fetchColumn();
-    $countDostupniVozaci = $pdo->query("SELECT COUNT(*) FROM zaposlenici WHERE status = 'Dostupan'")->fetchColumn();
-    $countGodisnji = $pdo->query("SELECT COUNT(*) FROM zaposlenici WHERE status = 'Godišnji odmor'")->fetchColumn();
-    $countServis = $pdo->query("SELECT COUNT(*) FROM vozila WHERE status = 'Na servisu'")->fetchColumn();
+		//counteri za top kartice
+    $brojVozila = $pdo->query("SELECT COUNT(*) FROM vozila")->fetchColumn();
+    $brojVozaca = $pdo->query("SELECT COUNT(*) FROM zaposlenici")->fetchColumn();
+    $brojDostupnihVozaca = $pdo->query("SELECT COUNT(*) FROM zaposlenici WHERE status = 'Dostupan'")->fetchColumn();
+    $brojGO = $pdo->query("SELECT COUNT(*) FROM zaposlenici WHERE status = 'Godišnji odmor'")->fetchColumn();
+    $brojServisa = $pdo->query("SELECT COUNT(*) FROM vozila WHERE status = 'Na servisu'")->fetchColumn();
 
-    // 2. Zadnji događaji / najmovi (spajanje tablica najmovi, vozila i zaposlenici)
     $zadnjiNajmovi = $pdo->query("
         SELECT n.*, v.naziv as vozilo_naziv, v.registracija, z.ime_prezime 
         FROM najmovi n
@@ -26,7 +26,7 @@ try {
         ORDER BY n.id DESC LIMIT 4
     ")->fetchAll();
 
-} catch (PDOException $e) {
+} catch (pdoException $e) {
     zapisiGresku("Greška na index.php: " . $e->getMessage());
 }
 
@@ -35,13 +35,10 @@ include 'includes/navbar.php';
 ?>
 
 <body>
-	<!--Navigation-->
-	<div id="navbar-container"></div>
-
 	<div class="container-fluid">
 		<div class="row">
 
-			<div id="sidebar-container"></div>
+			<?php include 'navigation/sidebar.php'; ?>
 			<!-- main content -->
 			<div class="col-lg-10 ms-lg-auto px-md-4">
 				<!-- card row -->
@@ -50,8 +47,8 @@ include 'includes/navbar.php';
 						<div class="card text-center mb-3 text-bg-primary">
 							<div class="card-body">
 								<h5 class="card-title">Broj vozila</h5>
-								<h3 class="card-text">46</h3>
-								<p class="card-text">2 nova u dolasku</p>
+								<h3 class="card-text"><?= $brojVozila?></h3>
+								<p class="card-text">&nbsp;</p>
 							</div>
 						</div>
 					</div>
@@ -59,7 +56,7 @@ include 'includes/navbar.php';
 						<div class="card text-center mb-3 text-bg-warning">
 							<div class="card-body">
 								<h5 class="card-title">Broj vozača</h5>
-								<h3 class="card-text">28</h3>
+								<h3 class="card-text"><?= $brojVozaca?></h3>
 								<p class="card-text">5 trenutno dostupnih</p>
 							</div>
 						</div>
@@ -68,7 +65,7 @@ include 'includes/navbar.php';
 						<div class="card text-center mb-3 text-bg-success">
 							<div class="card-body">
 								<h5 class="card-title">Broj godišnjih odmora</h5>
-								<h3 class="card-text">4</h3>
+								<h3 class="card-text"><?= $brojGO?></h3>
 								<p class="card-text">&nbsp;</p>
 							</div>
 						</div>
@@ -77,7 +74,7 @@ include 'includes/navbar.php';
 						<div class="card text-center mb-3 text-bg-danger">
 							<div class="card-body">
 								<h5 class="card-title">Broj vozila na servisu</h5>
-								<h3 class="card-text">2</h3>
+								<h3 class="card-text"><?= $brojServisa?></h3>
 								<p class="card-text">&nbsp;</p>
 							</div>
 						</div>
@@ -126,7 +123,7 @@ include 'includes/navbar.php';
 
 			</div>
 		</div>
-
+	<?php include 'includes/footer.php'; ?>
 	</div>
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
