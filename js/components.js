@@ -19,7 +19,7 @@ async function loadComponent(selector, url) {
 }
 
 document.addEventListener("DOMContentLoaded", async function () {
-  
+
   const currentPage = window.location.pathname.split("/").pop() || "index.html";
 
   await loadComponent("#sidebar-container", "navigation/sidebar.html");

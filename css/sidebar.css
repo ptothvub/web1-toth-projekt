@@ -1,12 +1,12 @@
 .sidebar {
-    background-color: whitesmoke;
-    border-right: 1px solid rgb(210, 209, 209);
-    position: fixed;
-    left: 0;
-    min-height: 100vh;
-    padding: 20px 0 0 0;
-    width: calc(100% - 75%);
-    top: 56px;
+  background-color: whitesmoke;
+  border-right: 1px solid rgb(210, 209, 209);
+  position: fixed;
+  left: 0;
+  min-height: 100vh;
+  padding: 20px 0 0 0;
+  width: calc(100% - 75%);
+  top: 56px;
 }
 
 .sidebar .nav-link {
@@ -27,13 +27,13 @@
 }
 
 .sidebar .nav-link:hover {
-    background-color: rgb(227, 227, 227);
-    color: #3d91f7;
+  background-color: rgb(227, 227, 227);
+  color: #3d91f7;
 }
 
 .sidebar .nav-link.active {
-    background-color: #3d91f7;
-    color: white;
+  background-color: #3d91f7;
+  color: white;
 }
 
 .primary {

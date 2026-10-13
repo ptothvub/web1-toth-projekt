@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (logoutBtn) {
       event.preventDefault();
-      
+
       Swal.fire({
         icon: "success",
         title: "Uspješno ste odjavljeni!"

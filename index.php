@@ -1,6 +1,6 @@
 <?php
 //spoji se na bazu, $pdo mi je objekt instance veze s db, ne treba cleanup...
-require_once 'config/pdo.php';
+require_once 'config/db.php';
 
 // Ako korisnik nije prijavljen, preusmjeri ga na login
 if (!isset($_SESSION['user'])) {
@@ -88,6 +88,8 @@ include 'includes/navbar.php';
 						Događaji
 					</h5>
 					<div class="card-body">
+
+					
 						<div class="list-group">
 							<a href="#" class="list-group-item list-group-item-action">
 								<div class="d-flex w-100 justify-content-between">
@@ -118,18 +120,14 @@ include 'includes/navbar.php';
 								<small>28.6.2026. - 7.7.2026.</small>
 							</a>
 						</div>
+
+
 					</div>
 				</div>
 
 			</div>
 		</div>
-	<?php include 'includes/footer.php'; ?>
 	</div>
-
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-	<script src="js/components.js"></script>
-	<script src="js/alert.js"></script>
+	<?php include 'includes/footer.php'; ?>
 </body>
-
 </html>
