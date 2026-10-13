@@ -1,64 +1,63 @@
-CREATE DATABASE IF NOT EXISTS 'upravljanje_vozilima' DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE 'upravljanje_vozilima';
+CREATE DATABASE IF NOT EXISTS `upravljanje_vozilima` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE `upravljanje_vozilima`;
 
-CREATE TABLE IF NOT EXISTS 'vozila' (
-    'id' INT AUTO_INCREMENT PRIMARY KEY,
-    'naziv' VARCHAR(100) NOT NULL,
-    'registracija' VARCHAR(20) NOT NULL UNIQUE,
-    'godina' INT NOT NULL,
-    'kilometraza' INT NOT NULL DEFAULT 0,
-    'status' ENUM('Dostupan', 'Nedostupan', 'Na servisu') NOT NULL DEFAULT 'Dostupan',
-    'created_at' TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+CREATE TABLE IF NOT EXISTS `vozila` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `naziv` VARCHAR(100) NOT NULL,
+    `registracija` VARCHAR(20) NOT NULL UNIQUE,
+    `godina` INT NOT NULL,
+    `kilometraza` INT NOT NULL DEFAULT 0,
+    `status` ENUM('Dostupan', 'Nedostupan', 'Na servisu') NOT NULL DEFAULT 'Dostupan'
 );
 
-CREATE TABLE IF NOT EXISTS 'zaposlenici' (
-    'id' INT AUTO_INCREMENT PRIMARY KEY,
-    'ime_prezime' VARCHAR(100) NOT NULL,
-    'lokacija' VARCHAR(100) NOT NULL,
-    'kategorije' VARCHAR(50) NOT NULL,
-    'status' ENUM('Dostupan', 'Na putu', 'Godišnji odmor') NOT NULL DEFAULT 'Dostupan',
-    'created_at' TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+CREATE TABLE IF NOT EXISTS `zaposlenici` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `ime_prezime` VARCHAR(100) NOT NULL,
+    `lokacija` VARCHAR(100) NOT NULL,
+    `kategorije` VARCHAR(50) NOT NULL,
+    `status` ENUM('Dostupan', 'Na putu', 'Godišnji odmor') NOT NULL DEFAULT 'Dostupan'
 );
 
-CREATE TABLE IF NOT EXISTS 'korisnici' (
-    'id' INT AUTO_INCREMENT PRIMARY KEY,
-    'zaposlenik_id' INT NULL,
-    'korisnicko_ime' VARCHAR(50) NOT NULL UNIQUE,
-    'lozinka' VARCHAR(50) NOT NULL,
-    'uloga' ENUM('admin', 'zaposlenik') NOT NULL DEFAULT 'zaposlenik',
-    FOREIGN KEY ('zaposlenik_id') REFERENCES 'zaposlenici'('id') ON DELETE CASCADE
+CREATE TABLE IF NOT EXISTS `korisnici` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `zaposlenik_id` INT NULL,
+    `korisnicko_ime` VARCHAR(50) NOT NULL UNIQUE,
+    `lozinka` VARCHAR(50) NOT NULL,
+    `uloga` ENUM('admin', 'zaposlenik') NOT NULL DEFAULT 'zaposlenik',
+    FOREIGN KEY (`zaposlenik_id`) REFERENCES `zaposlenici`(`id`) ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS 'najmovi' (
-    'id' INT AUTO_INCREMENT PRIMARY KEY,
-    'vozilo_id' INT NOT NULL,
-    'zaposlenik_id' INT NOT NULL,
-    'datum_pocetka' DATE NOT NULL,
-    'datum_povratka' DATE NOT NULL,
-    'status' ENUM('Aktivno', 'Vraćeno') DEFAULT 'Aktivno',
-    'created_at' TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY ('vozilo_id') REFERENCES 'vozila'('id') ON DELETE CASCADE,
-    FOREIGN KEY ('zaposlenik_id') REFERENCES 'zaposlenici'('id') ON DELETE CASCADE
+CREATE TABLE IF NOT EXISTS `najmovi` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `vozilo_id` INT NOT NULL,
+    `zaposlenik_id` INT NOT NULL,
+    `datum_pocetka` DATE NOT NULL,
+    `datum_povratka` DATE NOT NULL,
+    `status` ENUM('Aktivno', 'Vraćeno') DEFAULT 'Aktivno',
+    FOREIGN KEY (`vozilo_id`) REFERENCES `vozila`(`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`zaposlenik_id`) REFERENCES `zaposlenici`(`id`) ON DELETE CASCADE
 );
 
 
-INSERT INTO 'vozila' ('naziv', 'registracija', 'godina', 'kilometraza', 'status') VALUES
+INSERT INTO `vozila` (`naziv`, `registracija`, `godina`, `kilometraza`, `status`) VALUES
 ('Lancia Delta', 'BJ 124-HF', 1993, 77829, 'Dostupan'),
 ('Daewoo Matiz', 'BJ 777-SJ', 2000, 478294, 'Na servisu'),
 ('Volkswagen Caddy', 'BJ 213-RI', 2015, 247829, 'Nedostupan'),
+('Renault Master', 'ST 9876-EF', 2018, 182300, 'Nedostupan'),
 ('Škoda Favorit', 'BJ 123-CZ', 1995, 347280, 'Dostupan');
 
-INSERT INTO 'zaposlenici' ('ime_prezime', 'lokacija', 'kategorije', 'status') VALUES
+INSERT INTO `zaposlenici` (`ime_prezime`, `lokacija`, `kategorije`, `status`) VALUES
 ('Ivan Horvat', 'Bjelovar', 'A, B, C', 'Dostupan'),
 ('Marija Kovačić', 'Zagreb', 'B', 'Dostupan'),
 ('Marko Marulić', 'Split', 'B, C, CE, D', 'Na putu'),
 ('Siniša Lovrić', 'Bjelovar', 'B, C, C1', 'Godišnji odmor'),
 ('Đuro Pedala', 'Osijek', 'A, B, C, C1', 'Dostupan');
 
-INSERT INTO 'korisnici' ('zaposlenik_id', 'korisnicko_ime', 'lozinka', 'uloga') VALUES
+INSERT INTO `korisnici` (`zaposlenik_id`, `korisnicko_ime`, `lozinka`, `uloga`) VALUES
 (NULL, 'admin', 'admin', 'admin'),
 (1, 'ivan', 'ivan123', 'zaposlenik'),
 (2, 'marija', 'marija123', 'zaposlenik');
 
-INSERT INTO 'najmovi' ('vozilo_id', 'zaposlenik_id', 'datum_pocetka', 'datum_povratka', 'status') VALUES
-(3, 1, '2026-07-28', '2026-08-05', 'Aktivno');
+INSERT INTO `najmovi` (`vozilo_id`, `zaposlenik_id`, `datum_pocetka`, `datum_povratka`, `status`) VALUES
+(3, 3, '2026-07-28', '2026-08-05', 'Aktivno'),
+(4, 2, '2026-07-30', '2026-08-10', 'Aktivno');
