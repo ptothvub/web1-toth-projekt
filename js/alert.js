@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
         icon: "success",
         title: "Uspješno ste odjavljeni!"
       }).then(() => {
-        window.location.href = "index.html";
+        window.location.href = "index.php";
       });
     }
   });

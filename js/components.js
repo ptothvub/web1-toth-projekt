@@ -20,11 +20,11 @@ async function loadComponent(selector, url) {
 
 document.addEventListener("DOMContentLoaded", async function () {
 
-  const currentPage = window.location.pathname.split("/").pop() || "index.html";
+  const currentPage = window.location.pathname.split("/").pop() || "index.php";
 
-  await loadComponent("#sidebar-container", "navigation/sidebar.html");
+  await loadComponent("#sidebar-container", "navigation/sidebar.php");
 
-  await loadComponent("#navbar-container", "navigation/navbar.html");
+  await loadComponent("#navbar-container", "navigation/navbar.php");
 
   setActiveMenuItem(currentPage);
 });
@@ -35,16 +35,16 @@ function setActiveMenuItem(currentPage) {
   });
 
   switch (currentPage) {
-    case "index.html":
+    case "index.php":
       document.getElementById("sidebar-dashboard")?.classList.add("active");
       break;
-    case "vozila.html":
+    case "vozila.php":
       document.getElementById("sidebar-vehicles")?.classList.add("active");
       break;
-    case "zaposlenici.html":
+    case "zaposlenici.php":
       document.getElementById("sidebar-employees")?.classList.add("active");
       break;
-    case "najam.html":
+    case "najam.php":
       document.getElementById("sidebar-rent")?.classList.add("active");
       break;
   }
