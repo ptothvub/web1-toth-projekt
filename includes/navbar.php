@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
-    <a class="navbar-brand" href="index.html">
+    <a class="navbar-brand" href="index.php">
       Upravljanje vozilima
     </a>
     <button class="navbar-toggler" 
@@ -16,12 +16,16 @@
     <div class="d-flex align-items-center ms-auto">
         <span class="me-3 d-none d-sm-inline">
           <i class="bi bi-person-circle me-1"></i>
-          <?= htmlspecialchars($_SESSION['user']['ime_prezime']) ?>
+          <?php if (!empty($_SESSION['user']['ime_prezime'])): ?>
+              <?= htmlspecialchars($_SESSION['user']['ime_prezime']) ?>
+            <?php else: ?>
+              Admin
+          <?php endif; ?>
         </span>
-        <button class="btn btn-danger btn-sm" id="logout-btn">
+        <a href="logout.php" class="btn btn-danger btn-sm">
           <i class="bi bi-box-arrow-right"></i>
           Odjava
-        </button>
+        </a>
     </div>
   </div>
 </nav>
