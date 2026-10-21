@@ -1,8 +1,26 @@
 <?php
+require_once 'config/db.php';
+
+//provjeri je li korisnik prijavljen
+if (!isset($_SESSION['user'])) {
+	header("Location: login.php");
+	exit;
+}
+
+//provjeri ulogu
+$currentUser = $_SESSION['user'];
+$isAdmin = ($currentUser['uloga'] === 'admin');
+
+//provjeri ima li vozač već rezervirano vozilo
+//provjeri je li vozilo slobodno
+//provjeri je li povratak > početka rezervacije
+
+$
 
 include 'includes/header.php';
 include 'includes/navbar.php';
 ?>
+
 <body>
 	<!--Navigation-->
 	<div id="navbar-container"></div>

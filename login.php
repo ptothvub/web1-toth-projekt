@@ -21,10 +21,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   //left join je lijevi krug i sredina! k je lijevi, z desni
   //Sve iz k ostaje, iz z ispada sto nema match u k
   $stmt = $pdo->prepare("
-    SELECT k.*, z.ime_prezime
-    FROM korisnici k LEFT JOIN zaposlenici z 
-    ON k.zaposlenik_id = z.id
-    WHERE k.korisnicno_ime = ? AND k.lozinka = ?
+    SELECT k.*, z.ime_prezime 
+    FROM korisnici k 
+    LEFT JOIN zaposlenici z ON k.zaposlenik_id = z.id 
+    WHERE k.korisnicko_ime = ? AND k.lozinka = ?
   ");
 
   $stmt->execute([$username, $password]);
