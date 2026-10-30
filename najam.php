@@ -139,8 +139,9 @@ include 'includes/navbar.php';
 						<div class="card-body">	
 						  <?php if (!$isAdmin && $imaAktivnoVozilo): ?>
 								<div class="alert alert-warning>
-								<i class="bi bi-exclamation-triangle"></i>
-                <strong>Već imate rezervirano vozilo!</strong>
+									<i class="bi bi-exclamation-triangle"></i>
+									<strong>Već imate rezervirano vozilo!</strong>
+							</div>
 							<?php else: ?>
 						  <form method="POST">
 								<input type="hidden" name="action" value="rezerviraj">
