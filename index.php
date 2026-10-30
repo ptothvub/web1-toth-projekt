@@ -14,6 +14,7 @@ try {
 	//counteri za top kartice
 	$brojVozila = $pdo->query("SELECT COUNT(*) FROM vozila")->fetchColumn();
 	$brojVozaca = $pdo->query("SELECT COUNT(*) FROM zaposlenici")->fetchColumn();
+	$brojDostupnihVozila = $pdo->query("SELECT COUNT(*) FROM vozila WHERE status = 'Dostupan'")->fetchColumn();
 	$brojDostupnihVozaca = $pdo->query("SELECT COUNT(*) FROM zaposlenici WHERE status = 'Dostupan'")->fetchColumn();
 	$brojGO = $pdo->query("SELECT COUNT(*) FROM zaposlenici WHERE status = 'Godišnji odmor'")->fetchColumn();
 	$brojServisa = $pdo->query("SELECT COUNT(*) FROM vozila WHERE status = 'Na servisu'")->fetchColumn();
@@ -48,7 +49,7 @@ include 'includes/navbar.php';
 						<div class="card-body">
 							<h5 class="card-title">Broj vozila</h5>
 							<h3 class="card-text"><?= $brojVozila ?></h3>
-							<p class="card-text">&nbsp;</p>
+							<p class="card-text"><?= $brojDostupnihVozila ?> trenutno dostupnih</p>
 						</div>
 					</div>
 				</div>
