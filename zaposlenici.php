@@ -120,7 +120,7 @@ include 'includes/navbar.php';
 							<form method="POST" class="d-inline">
 								<input type="hidden" name="action" value="delete">
 								<input type="hidden" name="id" value="<?= $z['id'] ?>">
-								<button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Želite li izbrisati vozača?')">
+								<button type="button" class="btn btn-sm btn-outline-danger btn-delete">
 										<i class="bi bi-trash"></i>
 								</button>
 							</form>

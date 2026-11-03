@@ -96,12 +96,24 @@ include 'includes/navbar.php';
 			</form>
 
 			<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-4">
-				<?php foreach ($vozila as $v): ?>
+				<?php foreach ($vozila as $v):
+					$borderClass = match($v['status']) {
+						'Dostupan'   => 'border-success',
+						'Na servisu' => 'border-warning',
+						default      => 'border-danger'
+					};
+
+					$badgeClass = match($v['status']) {
+						'Dostupan'   => 'bg-success',
+						'Na servisu' => 'bg-warning text-dark',
+						default      => 'bg-danger'
+					};
+				?>
 				<div class="col">
-					<div class="card h-100 shadow-sm">
+					<div class="card h-100 shadow-sm <?= $borderClass ?>">
 						<div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
 							<span><?= htmlspecialchars($v['naziv']) ?></span>
-							<span class="badge bg-secondary"><?= $v['status'] ?></span>
+							<span class="badge rounded-pill <?= $badgeClass ?>"><?= $v['status'] ?></span>
 						</div>
 						<div class="card-body">
 							<h5><?= htmlspecialchars($v['registracija']) ?></h5>
@@ -115,7 +127,9 @@ include 'includes/navbar.php';
 							<form method="POST">
 								<input type="hidden" name="action" value="delete">
 								<input type="hidden" name="id" value="<?= $v['id'] ?>">
-								<button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Sigurno obrisati?')">Obriši</button>
+								<button type="button" class="btn btn-sm btn-outline-danger btn-delete">
+        					<i class="bi bi-trash"></i>
+    						</button>
 							</form>
 						</div>
 

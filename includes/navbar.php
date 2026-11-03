@@ -22,7 +22,7 @@
               Admin
           <?php endif; ?>
         </span>
-        <a href="logout.php" class="btn btn-danger btn-sm">
+        <a href="logout.php" class="btn btn-danger btn-sm" id="logout-btn">
           <i class="bi bi-box-arrow-right"></i>
           Odjava
         </a>
